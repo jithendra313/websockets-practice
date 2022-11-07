@@ -1,0 +1,65 @@
+<!-- <table id="employees">
+	<tr>
+		<th>MARKET CAP RANK</th>
+		<th>NAME</th>
+		<th>CURRENT PRICE</th>
+		<th>PRICE CHANGE IN 24HRS</th>
+	</tr>
+	<tr *ngFor="let coin of livePrice">
+		<td *ngIf="(coin.market_cap_rank <  5)">{{coin.market_cap_rank}}</td>
+		<td *ngIf="(coin.market_cap_rank <  5)">{{coin.name}}</td>
+		<td *ngIf="(coin.market_cap_rank <  5)">{{coin.current_price}}</td>
+		<td *ngIf="(coin.market_cap_rank <  5)" class="text-primary">{{coin.price_change_24h}}</td>
+	</tr>
+</table> -->
+<h1 class="header" style="color: black;">CRYPTO TRACKER</h1>
+<div class="container">
+	<div class="ticker">
+		<div class="title">
+			<h5>LIVE</h5>
+		</div>
+		<div class="news">
+			<marquee class="news-content" behavior="scroll" scrollamount="10" onmouseover="stop()" onmouseout="start()"
+				loop="infinite" direction="left">
+				<div class="d-flex">
+					<ng-container *ngFor="let coin of livePrice ">
+						<div class="d-flex">
+							<img [src]="coin.image" class="img-fluid" alt="">
+							<h5>{{coin.name | uppercase}}<span
+									class="text-warning">{{coin.market_cap_change_percentage_24h}}%</span></h5>
+							<p>${{coin.current_price }}</p>
+						</div>
+					</ng-container>
+				</div>
+			</marquee>
+		</div>
+	</div>
+</div>
+<p class="price" *ngIf="latestPrice | async as price; else loading" style="font-size:75px ;">
+	Bitcoin live price: <strong>${{price}}</strong> <img src="{{direction$ | async}}" />
+</p>
+<ng-template #loading>
+
+	<div class="wrapper">
+
+		<div class="circle"></div>
+
+		<div class="circle"></div>
+
+		<div class="circle"></div>
+
+		<div class="shadow"></div>
+
+		<div class="shadow"></div>
+
+		<div class="shadow"></div>
+
+	</div>
+
+</ng-template>
+<p class="price" *ngIf="timeStamp | async as price; else loading" style="font-size:75px ;">
+	UNIX milliseconds timestamp: <strong>{{price}}</strong>
+</p>
+<p class="price" *ngIf="latestprice$ | async as price1;" style="font-size:75px ;">
+	Volume: <strong>{{price1}}</strong>
+</p>
