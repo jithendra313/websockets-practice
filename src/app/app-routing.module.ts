@@ -1,15 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeesComponent } from './employees/employees.component';
+import { LoginSSOComponent } from './login-sso/login-sso.component';
+import { StockDashboardComponent } from './stock-dashboard/stock-dashboard.component';
 
 const routes: Routes = [
   {
-    path: 'employees',
+    path: 'dashboard',
 
-    component: EmployeesComponent,
+    component: StockDashboardComponent,
+
+  },  {
+    path: 'login',
+
+    component: LoginSSOComponent,
 
   },
-  { path: '', redirectTo: '/employees', pathMatch: 'full' }
+  
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

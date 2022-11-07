@@ -39,27 +39,28 @@
 	Bitcoin live price: <strong>${{price}}</strong> <img src="{{direction$ | async}}" />
 </p>
 <ng-template #loading>
-
 	<div class="wrapper">
-
 		<div class="circle"></div>
-
 		<div class="circle"></div>
-
 		<div class="circle"></div>
-
 		<div class="shadow"></div>
-
 		<div class="shadow"></div>
-
 		<div class="shadow"></div>
-
 	</div>
-
+</ng-template>
+<ng-template #hello>
+	<div class="wrapper" style="margin-top: 150px;">
+		<div class="circle"></div>
+		<div class="circle"></div>
+		<div class="circle"></div>
+		<div class="shadow"></div>
+		<div class="shadow"></div>
+		<div class="shadow"></div>
+	</div>
 </ng-template>
 <p class="price" *ngIf="timeStamp | async as price; else loading" style="font-size:75px ;">
 	UNIX milliseconds timestamp: <strong>{{price}}</strong>
 </p>
-<p class="price" *ngIf="latestprice$ | async as price1;" style="font-size:75px ;">
+<p class="price" *ngIf="latestprice$ | async as price1; else hello" style="font-size:75px ;">
 	Volume: <strong>{{price1}}</strong>
 </p>

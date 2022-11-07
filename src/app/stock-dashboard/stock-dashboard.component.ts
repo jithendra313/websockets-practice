@@ -23,11 +23,11 @@ export interface Trade {
   type: string
 }
 @Component({
-  selector: 'app-employees',
-  templateUrl: './employees.component.html',
-  styleUrls: ['./employees.component.css']
+  selector: 'app-stock-dashboard',
+  templateUrl: './stock-dashboard.component.html',
+  styleUrls: ['./stock-dashboard.component.css']
 })
-export class EmployeesComponent implements OnInit {
+export class StockDashboardComponent implements OnInit {
   socket1$: WebSocketSubject<any> = webSocket({
     url: 'wss://ws.finnhub.io?token=bsr37a748v6tucpfplbg',
     openObserver: {
