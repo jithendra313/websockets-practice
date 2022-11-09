@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable, throwError, of, tap, EMPTY } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import employees from '../../assets/employees.json'
 import { Subject } from 'rxjs';
 import { switchMap } from 'rxjs';
+import { MsalService } from '@azure/msal-angular';
 
 import { timer } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { ApiService } from './api.service';
 import { LivePrice } from './livePrice';
-
+import { silentRequest } from '../auth-config';
 import { webSocket, WebSocketSubject } from "rxjs/webSocket";
 import { map, distinctUntilChanged, pairwise, delay, first, takeLast, distinct } from 'rxjs/operators';
 export interface Trade {
@@ -56,14 +56,11 @@ export class StockDashboardComponent implements OnInit {
   livePrice: any;
   updatedData: any;
   livePrice$: Observable<LivePrice>;
-  constructor(private httpClient: HttpClient, private apiService: ApiService) {
+  constructor(private httpClient: HttpClient, private apiService: ApiService,private authService: MsalService) {
     // this.apiService.getLivePrice().subscribe(result =>{
     //   console.log(result);
     //   this.livePrice = result;
     // })
-  }
-  getEmployees(): Observable<any> {
-    return of(employees);
   }
   getLatestPrice() {
     this.latestPrice = this.socket1$.pipe(
@@ -90,6 +87,11 @@ export class StockDashboardComponent implements OnInit {
       map(arr => arr[0] < arr[1] ? '/assets/icons8-up-arrow-100.png' : '/assets/decrease.png')
     )
   }
+  async logout(){
+    await this.authService.logout()
+    // sessionStorage.clear()
+    // localStorage.clear()
+  }
   ngOnInit(): void {
     this.subscription = timer(0, 10000).pipe(
       switchMap(() => this.apiService.getLivePrice())
@@ -98,17 +100,12 @@ export class StockDashboardComponent implements OnInit {
       this.livePrice = result;
     }
     );
-    this.subscription = timer(0, 10000).pipe(
-      switchMap(() => this.getEmployees())
-    ).subscribe(data => {
-      console.log(data);
-      this.employeeData = data;
-    }
-    );
     this.latestprice$ = this.getLatestPrice1();
     this.getLatestPrice();
     this.direction$ = this.getDirection();
   }
+
+  
 }
 // this.getEmployees().subscribe(data => {
 //   this.employeeData = data

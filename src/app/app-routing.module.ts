@@ -2,12 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginSSOComponent } from './login-sso/login-sso.component';
 import { StockDashboardComponent } from './stock-dashboard/stock-dashboard.component';
+import {MsalGuard} from '@azure/msal-angular';
 
 const routes: Routes = [
   {
     path: 'dashboard',
 
     component: StockDashboardComponent,
+    canActivate: [
+      MsalGuard]
 
   },  {
     path: 'login',
