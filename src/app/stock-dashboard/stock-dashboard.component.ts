@@ -5,7 +5,6 @@ import { catchError, retry } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { switchMap } from 'rxjs';
 import { MsalService } from '@azure/msal-angular';
-
 import { timer } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { ApiService } from './api.service';
@@ -104,8 +103,6 @@ export class StockDashboardComponent implements OnInit {
     this.getLatestPrice();
     this.direction$ = this.getDirection();
   }
-
-  
 }
 // this.getEmployees().subscribe(data => {
 //   this.employeeData = data

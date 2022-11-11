@@ -33,6 +33,6 @@
   * between applications by providing a "login_hint" property.
   */
  export const silentRequest = {
-     scopes: ["openid", "profile"],
+     scopes: ["openid", "       "],
      loginHint: "example@domain.net"
  };
