@@ -3,6 +3,7 @@ import { MsalService } from '@azure/msal-angular';
 import { Router } from '@angular/router';
 import { InteractionRequiredAuthError } from '@azure/msal-browser';
 import { silentRequest } from '../auth-config';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-login-sso',
@@ -14,6 +15,7 @@ export class LoginSSOComponent implements OnInit {
   constructor(
     private authService: MsalService,
     private router: Router,
+    private toastService: HotToastService,
   ) { }
   checkAndSetActiveAccount() {
     let activeAccount = this.authService.instance.getActiveAccount();
@@ -44,6 +46,13 @@ export class LoginSSOComponent implements OnInit {
               this.authService.instance.setActiveAccount(data.account);
               this.router.navigate([`/dashboard`]);
               localStorage.setItem('jwtToken', data.accessToken);
+              this.toastService.success('Successfully logged-in',{
+                position: 'top-right',
+                duration:5000,style: {
+                  border: '1px solid #fb4238',
+                  color: '#fb4238',
+                },
+              });
             });
           
         } catch (err) {
@@ -55,6 +64,13 @@ export class LoginSSOComponent implements OnInit {
                 this.authService.instance.setActiveAccount(response.account);
                 this.router.navigate([`/dashboard`]);
                 localStorage.setItem('jwtToken', response.accessToken);
+                this.toastService.success('Successfully logged-in' ,{
+                  position: 'top-right',
+                  duration:5000,style: {
+                    border: '1px solid #fb4238',
+                    color: '#fb4238',
+                  },
+                });
               });
           } else {
             alert(err);
@@ -68,6 +84,13 @@ export class LoginSSOComponent implements OnInit {
             this.authService.instance.setActiveAccount(response.account);
             this.router.navigate([`/dashboard`]);
             localStorage.setItem('jwtToken', response.accessToken);
+            this.toastService.success('Successfully logged-in',{
+              position: 'top-right',
+              duration:5000,style: {
+                border: '1px solid #fb4238',
+                color: '#fb4238',
+              },
+            });
           });
         
       }

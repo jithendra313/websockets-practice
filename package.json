@@ -20,6 +20,8 @@
     "@angular/router": "^14.2.0",
     "@azure/msal-angular": "^2.4.6",
     "@azure/msal-browser": "^2.31.0",
+    "@ngneat/hot-toast": "^4.1.0",
+    "@ngneat/overview": "^3.0.0",
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.9.1",
     "firebase": "^9.13.0",

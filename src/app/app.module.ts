@@ -24,6 +24,7 @@ import {
   IPublicClientApplication,
   PublicClientApplication,
 } from '@azure/msal-browser';
+import { HotToastModule } from '@ngneat/hot-toast';
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication(msalConfig);
 }
@@ -54,7 +55,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    HotToastModule.forRoot()
   ],
   providers: [
     {
