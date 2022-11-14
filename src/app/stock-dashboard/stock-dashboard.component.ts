@@ -1,3 +1,12 @@
+export interface Trade {
+  data: {
+    p: number,
+    s: string,
+    t: number,
+    v: number
+  }[],
+  type: string
+}
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable, throwError, of, tap, EMPTY } from 'rxjs';
@@ -12,15 +21,7 @@ import { LivePrice } from './livePrice';
 import { silentRequest } from '../auth-config';
 import { webSocket, WebSocketSubject } from "rxjs/webSocket";
 import { map, distinctUntilChanged, pairwise, delay, first, takeLast, distinct } from 'rxjs/operators';
-export interface Trade {
-  data: {
-    p: number,
-    s: string,
-    t: number,
-    v: number
-  }[],
-  type: string
-}
+import { HotToastService } from '@ngneat/hot-toast';
 @Component({
   selector: 'app-stock-dashboard',
   templateUrl: './stock-dashboard.component.html',
@@ -55,7 +56,7 @@ export class StockDashboardComponent implements OnInit {
   livePrice: any;
   updatedData: any;
   livePrice$: Observable<LivePrice>;
-  constructor(private httpClient: HttpClient, private apiService: ApiService,private authService: MsalService) {
+  constructor(private httpClient: HttpClient, private apiService: ApiService, private authService: MsalService, private toastService: HotToastService,) {
     // this.apiService.getLivePrice().subscribe(result =>{
     //   console.log(result);
     //   this.livePrice = result;
@@ -86,8 +87,19 @@ export class StockDashboardComponent implements OnInit {
       map(arr => arr[0] < arr[1] ? '/assets/icons8-up-arrow-100.png' : '/assets/decrease.png')
     )
   }
-  async logout(){
-    await this.authService.logout()
+  logout() {
+    this.toastService.loading('Logging Out',{
+      position: 'top-right',
+      duration:2000,style: {
+        border: '1px solid #fb4238',
+        color: '#fb4238',
+      },
+    });
+    setTimeout(() => {
+      this.authService.logout();
+    }, 2000);
+
+
     // sessionStorage.clear()
     // localStorage.clear()
   }

@@ -42,7 +42,7 @@ export class LoginSSOComponent implements OnInit {
         try {
           this.authService
             .acquireTokenSilent(silentRequest)
-            .subscribe((data: any) => {
+            .subscribe( (data: any) => {
               this.authService.instance.setActiveAccount(data.account);
               this.router.navigate([`/dashboard`]);
               localStorage.setItem('jwtToken', data.accessToken);
@@ -92,7 +92,6 @@ export class LoginSSOComponent implements OnInit {
               },
             });
           });
-        
       }
     } catch (err) {
      
