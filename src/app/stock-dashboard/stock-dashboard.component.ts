@@ -90,10 +90,8 @@ export class StockDashboardComponent implements OnInit {
   logout() {
     this.toastService.loading('Logging Out',{
       position: 'top-right',
-      duration:2000,style: {
-        border: '1px solid #fb4238',
-        color: '#fb4238',
-      },
+      duration:2000,
+      theme: 'snackbar',
     });
     setTimeout(() => {
       this.authService.logout();

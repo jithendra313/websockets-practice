@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { StockDashboardComponent } from './stock-dashboard/stock-dashboard.component';
 import { LoginSSOComponent } from './login-sso/login-sso.component';
 import { msalConfig } from './auth-config';
+import { NgToggleModule } from 'ng-toggle-button';
 import {
   MsalBroadcastService,
   MsalGuard,
@@ -56,7 +57,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    HotToastModule.forRoot()
+    HotToastModule.forRoot(),
+    NgToggleModule.forRoot()
   ],
   providers: [
     {

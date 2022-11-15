@@ -48,10 +48,7 @@ export class LoginSSOComponent implements OnInit {
               localStorage.setItem('jwtToken', data.accessToken);
               this.toastService.success('Successfully logged-in',{
                 position: 'top-right',
-                duration:5000,style: {
-                  border: '1px solid #fb4238',
-                  color: '#fb4238',
-                },
+                theme: 'snackbar',
               });
             });
           
@@ -66,10 +63,8 @@ export class LoginSSOComponent implements OnInit {
                 localStorage.setItem('jwtToken', response.accessToken);
                 this.toastService.success('Successfully logged-in' ,{
                   position: 'top-right',
-                  duration:5000,style: {
-                    border: '1px solid #fb4238',
-                    color: '#fb4238',
-                  },
+                  theme: 'snackbar',
+                  duration:5000
                 });
               });
           } else {
@@ -86,10 +81,8 @@ export class LoginSSOComponent implements OnInit {
             localStorage.setItem('jwtToken', response.accessToken);
             this.toastService.success('Successfully logged-in',{
               position: 'top-right',
-              duration:5000,style: {
-                border: '1px solid #fb4238',
-                color: '#fb4238',
-              },
+              theme: 'snackbar',
+              duration:5000
             });
           });
       }
