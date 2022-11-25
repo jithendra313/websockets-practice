@@ -26,6 +26,7 @@ import {
   PublicClientApplication,
 } from '@azure/msal-browser';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { ErrorComponent } from './error/error.component';
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication(msalConfig);
 }
@@ -51,7 +52,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   declarations: [
     AppComponent,
     StockDashboardComponent,
-    LoginSSOComponent
+    LoginSSOComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
