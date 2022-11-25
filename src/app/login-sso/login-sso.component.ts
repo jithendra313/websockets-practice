@@ -47,7 +47,7 @@ export class LoginSSOComponent implements OnInit {
               this.router.navigate([`/dashboard`]);
               localStorage.setItem('jwtToken', data.accessToken);
               this.toastService.success('Successfully logged-in',{
-                position: 'top-right',
+                position: 'top-left',
                 theme: 'snackbar',
               });
             });
@@ -62,7 +62,7 @@ export class LoginSSOComponent implements OnInit {
                 this.router.navigate([`/dashboard`]);
                 localStorage.setItem('jwtToken', response.accessToken);
                 this.toastService.success('Successfully logged-in' ,{
-                  position: 'top-right',
+                  position: 'top-left',
                   theme: 'snackbar',
                   duration:5000
                 });
@@ -80,7 +80,7 @@ export class LoginSSOComponent implements OnInit {
             this.router.navigate([`/dashboard`]);
             localStorage.setItem('jwtToken', response.accessToken);
             this.toastService.success('Successfully logged-in',{
-              position: 'top-right',
+              position: 'top-left',
               theme: 'snackbar',
               duration:5000
             });

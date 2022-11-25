@@ -1,4 +1,11 @@
-<!-- <table id="employees">
+<h1 class="header" style="color: black;">CRYPTO TRACKER <button class="button-24 mt-2" role="button" style=" float: right; margin-right: 20px;"
+	(click)="logout()">LOGOUT</button>
+<!-- <ng-toggle [value]="true" [color]="{
+	  unchecked: '#939da2',
+	  checked: '#f62d51'
+	}"></ng-toggle> -->
+</h1>
+<table id="employees">
 	<tr>
 		<th>MARKET CAP RANK</th>
 		<th>NAME</th>
@@ -11,14 +18,7 @@
 		<td *ngIf="(coin.market_cap_rank <  5)">{{coin.current_price}}</td>
 		<td *ngIf="(coin.market_cap_rank <  5)" class="text-primary">{{coin.price_change_24h}}</td>
 	</tr>
-</table> -->
-<h1 class="header" style="color: black;">CRYPTO TRACKER <button class="button-24" role="button"
-		(click)="logout()">LOGOUT</button>
-	<!-- <ng-toggle [value]="true" [color]="{
-		  unchecked: '#939da2',
-		  checked: '#f62d51'
-		}"></ng-toggle> -->
-</h1>
+</table>
 <div class="container">
 	<div class="ticker">
 		<div class="title">

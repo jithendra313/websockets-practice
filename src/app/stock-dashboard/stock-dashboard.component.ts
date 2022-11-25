@@ -89,7 +89,7 @@ export class StockDashboardComponent implements OnInit {
   }
   logout() {
     this.toastService.loading('Logging Out',{
-      position: 'top-right',
+      position: 'top-left',
       duration:2000,
       theme: 'snackbar',
     });
